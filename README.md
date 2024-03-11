@@ -1,7 +1,5 @@
-Absolutely, here's the information written as a readme.md file:
-
-AirBnB Clone Command Line Interface
------------------------------------
+BnB Clone Command Line Interface
+--------------------------------
 
 Welcome to the AirBnB clone project! This Command Line Interface (CLI) serves as the first step towards building a full web application, mimicking the functionality of AirBnB.
 

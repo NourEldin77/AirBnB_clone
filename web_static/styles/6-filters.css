@@ -60,16 +60,17 @@
     margin-right: auto;
 }
 .popover{
+    display: none;
     list-style: none;
     margin: 0;
     width: 100%;
     position: absolute;
     top:100%;
-    display: none;
     flex-direction: column;
     background-color: #FAFAFA;
     border: 1px solid  #DDDDDD;
     border-radius: 4px;
+    transition: height 1s ease;
     z-index: 22;
 }
 li{
@@ -85,19 +86,22 @@ span{
     align-items: flex-start;
     padding-block: 40px;
     right: 2%;
-    transition: all 200ms ease;
+
 }
 .locations .popover{
-
     justify-content: center;
     padding: 22px;
     right: 0%;
-    transition: all 200ms ease;
 }
 .locations .popover h2{
     margin: 8px;
 }
-
-.locations:hover , .popover{
+.locations:hover .popover{
     display: flex;
+}
+.amenities:hover .popover{
+    display: flex;
+}
+.amenities .popover li{
+    padding: 3px;
 }

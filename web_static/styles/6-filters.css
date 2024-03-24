@@ -76,7 +76,7 @@
     transition: height 1s ease;
     z-index: 22;
 }
-li{
+.popover li{
     display: flex;
     flex-direction: column;
 }
@@ -89,7 +89,6 @@ span{
     align-items: flex-start;
     padding-block: 40px;
     right: 2%;
-
 }
 .locations .popover{
     justify-content: center;

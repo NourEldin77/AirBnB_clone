@@ -70,3 +70,13 @@ class BaseModel:
         return ("[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id,
                                       self.__dict__))
+
+    def __cus__(self):
+        obj = self.__dict__.copy()
+        obj['created_at'] = self.created_at.isoformat()
+        obj['updated_at'] = self.updated_at.isoformat()
+
+        return ("[{}] ({}) {}".format(self.__class__.__name__,
+                                      self.id,
+                                      obj))
+

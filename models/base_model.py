@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 """ base model """
 
+import models
 import uuid
 import datetime
-from models import storage
-
 
 class BaseModel:
     """
@@ -34,18 +33,20 @@ class BaseModel:
                     self.updated_at = datetime.datetime.strptime(
                             kwargs['updated_at'],
                             "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == "__class__":
+                    continue
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
             self.updated_at = datetime.datetime.now()
-            storage.new(self)
+            models.storage.new(self)
 
     def save(self):
         """ update time with current datetime"""
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """

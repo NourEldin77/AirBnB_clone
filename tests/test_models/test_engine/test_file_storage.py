@@ -10,6 +10,7 @@ from models.base_model import BaseModel
 class TestFileStorage(unittest.TestCase):
 
     def setUp(self):
+        "Todo: doc"
         self.storage = FileStorage()
         self.test_obj = BaseModel()
         self.file_path = FileStorage._FileStorage__file_path
@@ -17,10 +18,12 @@ class TestFileStorage(unittest.TestCase):
             os.remove(self.file_path)
 
     def tearDown(self):
+        "Todo: doc"
         if os.path.exists(self.file_path):
             os.remove(self.file_path)
 
     def test_attributes(self):
+        "Todo: doc"
         self.assertTrue(hasattr(self.storage, '_FileStorage__objects'), "storage should have '__objects'")
         self.assertTrue(hasattr(self.storage, '_FileStorage__file_path'), "storage should have '__file_path'")
         self.assertTrue(hasattr(self.storage, 'all'), "storage should have 'all()'")
@@ -29,13 +32,16 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(hasattr(self.storage, 'reload'),"storage should have 'reload()'")
 
     def test_all(self):
+        "Todo: doc"
         self.assertIsInstance(self.storage.all(), dict)
 
     def test_new(self):
+        "Todo: doc"
         self.storage.new(self.test_obj)
         self.assertIn(f"BaseModel.{self.test_obj.id}", self.storage.all())
 
     def test_save(self):
+        "Todo: doc"
         self.storage.new(self.test_obj)
         self.storage.save()
         with open(self.file_path, 'r', encoding='utf-8') as file:
@@ -43,8 +49,12 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(f"BaseModel.{self.test_obj.id}", data)
 
     def test_reload(self):
+        "Todo: doc"
         self.storage.new(self.test_obj)
         self.storage.save()
         self.storage._FileStorage__objects = {}
         self.storage.reload()
         self.assertIn(f"BaseModel.{self.test_obj.id}", self.storage.all())
+
+    if __name__ == '__main__':
+        unittest.main()

@@ -20,7 +20,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** class name missing **")
             else:
                 if args[0] in HBNBCommand.__list_of_class:
-                    instance = globals()[args[0]]()
+                    #instance = globals()[args[0]]()
+                    for cls in HBNBCommand.__list_of_class:
+                        if cls == args[0]:
+                            instance = eval(cls)()
                     instance.save()
                     print(instance.id)
                 else:
@@ -78,16 +81,47 @@ class HBNBCommand(cmd.Cmd):
         storage_objects = storage.all()
         try:
             args = arg.split()
-            if args[1] in HBNBCommand.__list_of_class:
+            
+            if args[0] in HBNBCommand.__list_of_class:
                 all_arg_obj = []
                 for value in storage_objects.values():
-                    if value.__class.__name__ == args[0]:
+                    if value.__class__.__name__ == args[0]:
                         all_arg_obj.append(value.__str__())
                 print(all_arg_obj)
             else:
                 print("** class doesn't exist **")
         except IndexError:
             print([value.__str__() for value in storage_objects.values()])
+
+    def do_update(self, arg):
+        """ Todo: doc """
+        storage_objects = storage.all()
+        try:
+            args = arg.split()
+            if not args:
+                print("** class name missing **")
+            elif not arg[0]:
+                print("** class name missing **")
+            elif len(args) == 1:
+                print("** instance id missing **")
+            else:
+                if args[0] not in HBNBCommand.__list_of_class:
+                    print("** class doesn't exist **")
+                else:
+                    if f"{args[0]}.{args[1]}" not in storage_objects:
+                        print("** no instance found **")
+                    else:
+                        if len(args) < 3:
+                            print("** attribute name missing **")
+                        elif len(args) < 4:
+                            print("** value missing **")
+                        else:
+                            obj = storage_objects[f"{args[0]}.{args[1]}"]
+                            att_name = str(args[2])
+                            att_val = eval(args[3])
+                            obj.__dict__.update({att_name: att_val})
+        except ValueError:
+            print("** class name missing **")
 
     def do_quit(self, arg):
         """ Quit the cmd """

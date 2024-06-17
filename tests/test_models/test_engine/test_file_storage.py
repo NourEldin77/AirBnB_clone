@@ -31,6 +31,10 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(hasattr(self.storage, 'save'), "storage should have 'save()'")
         self.assertTrue(hasattr(self.storage, 'reload'),"storage should have 'reload()'")
 
+    def test_obj_list(self):
+        """ Todo: doc """
+        self.assertEqual(len(self.storage.all()), 0)
+
     def test_all(self):
         "Todo: doc"
         self.assertIsInstance(self.storage.all(), dict)
@@ -55,6 +59,11 @@ class TestFileStorage(unittest.TestCase):
         self.storage._FileStorage__objects = {}
         self.storage.reload()
         self.assertIn(f"BaseModel.{self.test_obj.id}", self.storage.all())
+        with open(self.file_path, 'w') as file:
+            pass
+        with self.assertRaises(ValueError):
+            self.storage.reload()
+
 
     if __name__ == '__main__':
         unittest.main()

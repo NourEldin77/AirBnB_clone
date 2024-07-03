@@ -4,14 +4,20 @@
 
 import cmd
 from models.base_model import BaseModel
-from models.user import User
 from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """ TODO: document """
     prompt = "(hbnb) "
-    __list_of_class = ["BaseModel","User"]
+    __list_of_class = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
 
     def do_create(self, arg):
         """ TODO: document """

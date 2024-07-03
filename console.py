@@ -4,13 +4,14 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     """ TODO: document """
     prompt = "(hbnb) "
-    __list_of_class = ["BaseModel"]
+    __list_of_class = ["BaseModel","User"]
 
     def do_create(self, arg):
         """ TODO: document """
@@ -143,7 +144,6 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """ do nothing when empty string """
         pass
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

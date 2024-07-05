@@ -127,6 +127,7 @@ class HBNBCommand(cmd.Cmd):
                             att_name = str(args[2])
                             att_val = eval(args[3])
                             obj.__dict__.update({att_name: att_val})
+                            obj.save()
         except ValueError:
             print("** class name missing **")
 
